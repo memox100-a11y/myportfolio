@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Compliance & Security Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap');
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+        .check-list-item::before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            margin-right: 10px;
+            color: #10b981;
+        }
+        .warning-list-item::before {
+            content: "\f00d";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            margin-right: 10px;
+            color: #ef4444;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <i class="fas fa-shield-halved text-blue-600 text-2xl mr-2"></i>
+                    <span class="font-bold text-xl tracking-tight">AI安全利用ガイド</span>
+                </div>
+                <div class="hidden md:block space-x-8">
+                    <a href="#risk" class="hover:text-blue-600">リスクを知る</a>
+                    <a href="#guideline" class="hover:text-blue-600">ガイドライン</a>
+                    <a href="#action" class="hover:text-blue-600">具体的対策</a>
+                    <a href="#quiz" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">理解度クイズ</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-gradient text-white py-20 px-4 text-center">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">そのプロンプト、<br class="md:hidden">世界に公開されても大丈夫？</h1>
+            <p class="text-xl mb-8 opacity-90">便利さの裏側にあるリスクを理解し、正しくAIを活用しましょう。</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#risk" class="bg-white text-blue-800 px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition">事例をチェック</a>
+                <a href="#guideline" class="bg-transparent border-2 border-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-blue-800 transition">社内ルールを見る</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Case Study Section -->
+    <section id="risk" class="py-20 max-w-7xl mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold mb-4">実際に起きた情報漏洩の恐怖</h2>
+            <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-white p-8 rounded-2xl shadow-sm border-l-8 border-red-500 card-hover">
+                <div class="flex items-center mb-4 text-red-600">
+                    <i class="fas fa-exclamation-triangle text-2xl mr-3"></i>
+                    <h3 class="font-bold text-xl">ソースコードの流出</h3>
+                </div>
+                <p class="text-gray-600 mb-4">
+                    某大手製造メーカーのエンジニアが、プログラムのバグ修正のために機密性の高いソースコードをAIに入力。そのデータがAIの学習に使用され、結果として外部にロジックが漏洩するリスクが発生しました。
+                </p>
+                <div class="bg-red-50 p-4 rounded-lg text-sm text-red-800">
+                    <i class="fas fa-lightbulb mr-2"></i><strong>教訓：</strong> AIは「便利なツール」ではなく「社外の公開掲示板」と考えるべき。
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl shadow-sm border-l-8 border-orange-500 card-hover">
+                <div class="flex items-center mb-4 text-orange-600">
+                    <i class="fas fa-user-secret text-2xl mr-3"></i>
+                    <h3 class="font-bold text-xl">顧客情報の漏洩</h3>
+                </div>
+                <p class="text-gray-600 mb-4">
+                    会議の議事録を要約させる際、参加者の個人名、電話番号、プロジェクトの予算規模をそのまま入力。運営会社の脆弱性や学習データの再利用により、第三者に情報が露出する事件が多発しています。
+                </p>
+                <div class="bg-orange-50 p-4 rounded-lg text-sm text-orange-800">
+                    <i class="fas fa-lightbulb mr-2"></i><strong>教訓：</strong> 特定可能な個人情報は必ず「伏せ字」にするか、削除すること。
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guideline Section -->
+    <section id="guideline" class="py-20 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">これだけは守って！AI利用の3か条</h2>
+                <p class="text-gray-600">社内規定に基づく、最も重要な基本ルールです。</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl text-center card-hover">
+                    <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">
+                        <i class="fas fa-eye-slash"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-4">機密情報は入力禁止</h4>
+                    <p class="text-sm text-gray-500">未発表の製品情報、契約書、ソースコードなどは絶対に送信しないでください。</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl text-center card-hover">
+                    <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-4">個人情報は匿名化</h4>
+                    <p class="text-sm text-gray-500">顧客名や社員名は「A氏」「プロジェクトX」のように抽象化して入力してください。</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl text-center card-hover">
+                    <div class="w-16 h-16 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl">
+                        <i class="fas fa-toggle-on"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-4">学習オフ設定を確認</h4>
+                    <p class="text-sm text-gray-500">オプトアウト設定（学習に利用させない設定）が有効か、必ず確認しましょう。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Action Section -->
+    <section id="action" class="py-20 max-w-5xl mx-auto px-4">
+        <div class="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-wrap">
+            <div class="w-full md:w-1/2 bg-blue-900 text-white p-12">
+                <h3 class="text-2xl font-bold mb-6">安全なプロンプトの作り方</h3>
+                <ul class="space-y-4">
+                    <li class="check-list-item">固有名詞を仮名に置き換える</li>
+                    <li class="check-list-item">具体的な数字は比率や概数にする</li>
+                    <li class="check-list-item">「一般的な事例として」と前提を置く</li>
+                    <li class="check-list-item">社内推奨の有料プラン(Enterprise等)を使う</li>
+                </ul>
+            </div>
+            <div class="w-full md:w-1/2 p-12">
+                <h3 class="text-2xl font-bold mb-6 text-red-600">絶対NGなプロンプト</h3>
+                <ul class="space-y-4">
+                    <li class="warning-list-item">顧客から届いたメールの全文コピペ</li>
+                    <li class="warning-list-item">社内システムのID・パスワード</li>
+                    <li class="warning-list-item">未公開の決算数値や経営戦略書</li>
+                    <li class="warning-list-item">個人の住所やマイナンバー、クレカ情報</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="quiz" class="py-20 bg-blue-50">
+        <div class="max-w-3xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-8">AIコンプライアンス・チェック</h2>
+            <div id="quiz-container" class="bg-white p-10 rounded-2xl shadow-lg text-left">
+                <p id="quiz-question" class="text-lg font-bold mb-6">Q. 顧客からのクレームメールを要約したい時、どうするのが正解？</p>
+                <div class="space-y-4">
+                    <button onclick="checkAnswer(false)" class="w-full text-left p-4 border rounded-xl hover:bg-gray-50 transition">A. そのまま全文をコピーして貼り付ける</button>
+                    <button onclick="checkAnswer(true)" class="w-full text-left p-4 border rounded-xl hover:bg-gray-50 transition">B. 顧客名や特定の注文番号を削除してから入力する</button>
+                    <button onclick="checkAnswer(false)" class="w-full text-left p-4 border rounded-xl hover:bg-gray-50 transition">C. 「これは秘密です」とAIに伝えてから入力する</button>
+                </div>
+                <div id="quiz-result" class="hidden mt-8 p-4 rounded-lg font-bold text-center"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12 text-center">
+        <div class="mb-6">
+            <i class="fas fa-shield-halved text-4xl text-blue-400"></i>
+        </div>
+        <p class="mb-4">コンプライアンス遵守は、あなたと会社を守る盾になります。</p>
+        <div class="text-sm opacity-50">
+            &copy; 2026 Your Company IT Security Division. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>
+        function checkAnswer(isCorrect) {
+            const resultDiv = document.getElementById('quiz-result');
+            resultDiv.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'bg-red-100', 'text-red-800');
+            
+            if (isCorrect) {
+                resultDiv.innerText = "正解！素晴らしい意識です。個人情報は必ず除外しましょう。";
+                resultDiv.classList.add('bg-green-100', 'text-green-800');
+            } else {
+                resultDiv.innerText = "残念...。AIに「秘密」と言っても、データは蓄積される可能性があります。必ず情報を加工しましょう。";
+                resultDiv.classList.add('bg-red-100', 'text-red-800');
+            }
+        }
+    </script>
+</body>
+</html>
